@@ -1,14 +1,26 @@
+
+defaults: &defaults
+  docker:
+    - image: hashicorp/terraform:light
+
+setup_remote_docker: &setup_remote_docker
+  version: 17.11.0-ce
+  reusable: true
+
 version: 2
 jobs:
   test:
+    <<: *defaults
     working_directory: ~
-    docker:
-      - image: ${TOOLS_IMAGE:-themuse/tools:latest}
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 18.06.0-ce
-          docker_layer_caching: true
+      - setup_remote_docker: *setup_remote_docker
       - run:
           name: Lint Terraform Files
           command: terraform fmt -check=true -list=true -diff=true
+
+workflows:
+  version: 2
+  primary:
+    jobs:
+      - test
