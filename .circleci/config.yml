@@ -4,7 +4,7 @@ defaults: &defaults
     - image: hashicorp/terraform:light
 
 setup_remote_docker: &setup_remote_docker
-  version: 17.11.0-ce
+  version: 17.12.1-ce
   reusable: true
 
 version: 2
