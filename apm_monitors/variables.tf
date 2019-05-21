@@ -6,10 +6,6 @@ variable "env" {
   description = "The abbreviated environment that the monitors are being created for. Either 'stg' or 'prd'."
 }
 
-variable "alert_message_output" {
-  description = "Name of slackroom or service alert output should go."
-}
-
 variable "apm_request_resource" {
   description = "The request resource you want to query against."
 }
@@ -29,6 +25,10 @@ variable "high_avg_latency_thresholds" {
   }
 }
 
+variable "high_avg_latency_alert_message_output" {
+  description = "Name of slackroom or service alert output should go."
+}
+
 # high_p90_latency
 variable "create_high_p90_latency_monitor" {
   description = "Flag to control whether a high p90 latency monitor is created."
@@ -44,12 +44,16 @@ variable "high_p90_latency_thresholds" {
   }
 }
 
+variable "high_p90_alert_message_output" {
+  description = "Name of slackroom or service alert output should go."
+}
+
+# high_error_rate
 variable "create_high_error_rate_monitor" {
   description = "Flag to control whether a high error rate monitor is created."
   default     = true
 }
 
-# high_error_rate
 variable "high_error_rate_thresholds" {
   description = "Alerting thresholds for high error rate monitor."
 
@@ -57,6 +61,10 @@ variable "high_error_rate_thresholds" {
     critical = 0.05
     warning  = 0.01
   }
+}
+
+variable "high_error_rate_alert_message_output" {
+  description = "Name of slackroom or service alert output should go."
 }
 
 # abnormal_throughput
@@ -72,4 +80,8 @@ variable "abnormal_throughput_thresholds" {
     critical          = 1
     critical_recovery = 0.1
   }
+}
+
+variable "abnormal_throughput_alert_message_output" {
+  description = "Name of slackroom or service alert output should go."
 }
