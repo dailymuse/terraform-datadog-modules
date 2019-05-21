@@ -51,3 +51,7 @@ variable "tags" {
   description = "A list of tags to associate with your synthetics test. This can help you categorize and filter tests in the manage synthetics page of the UI."
   default     = []
 }
+
+variable "create" {
+  description = "(Boolean) Whether an alarm should be created or not."
+}

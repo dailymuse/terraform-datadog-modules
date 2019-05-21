@@ -19,5 +19,5 @@ resource "datadog_synthetics_test" "synthetic_montior" {
 
   status = "${var.status}"
 
-  count = "${var.env == "prd" ? 1 : 0}"
+  count = "${var.create == true ? 1 : 0}"
 }
