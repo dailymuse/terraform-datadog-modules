@@ -5,7 +5,7 @@ module "high_average_latency" {
   env                    = "${var.env}"
   type                   = "query alert"
   monitor_condition_name = "high average latency"
-  alert_message_output   = "${var.alert_message_output}"
+  alert_message_output   = "${var.high_avg_latency_alert_message_output}"
 
   query = "avg(last_12h):anomalies(( sum:${var.apm_request_resource}.duration{service:${var.service_name},env:${var.env}} / sum:${var.apm_request_resource}.hits{service:${var.service_name},env:${var.env}} ), 'basic', 3, direction='above', alert_window='last_1h', interval=120, count_default_zero='true') >= 1"
 
@@ -26,7 +26,7 @@ module "high_error_rate" {
   env                    = "${var.env}"
   type                   = "query alert"
   monitor_condition_name = "high error rate"
-  alert_message_output   = "${var.alert_message_output}"
+  alert_message_output   = "${var.high_error_rate_alert_message_output}"
 
   query = "avg(last_10m):( sum:${var.apm_request_resource}.errors{service:${var.service_name},env:${var.env}} / sum:${var.apm_request_resource}.hits{service:${var.service_name},env:${var.env}} ) > 0.05"
 
@@ -42,7 +42,7 @@ module "high_p90_latency" {
   env                    = "${var.env}"
   type                   = "metric alert"
   monitor_condition_name = "high p90 latency"
-  alert_message_output   = "${var.alert_message_output}"
+  alert_message_output   = "${var.high_p90_alert_message_output}"
 
   query = "avg(last_12h):anomalies(avg:${var.apm_request_resource}.duration.by.service.90p{service:${var.service_name},env:${var.env}}, 'basic', 2, direction='above', alert_window='last_1h', interval=120, count_default_zero='true') >= 1"
 
@@ -63,7 +63,7 @@ module "abnormal_throughput" {
   env                    = "${var.env}"
   type                   = "query alert"
   monitor_condition_name = "abnormal change in throughput"
-  alert_message_output   = "${var.alert_message_output}"
+  alert_message_output   = "${var.abnormal_throughput_alert_message_output}"
 
   query = "avg(last_1h):anomalies(sum:${var.apm_request_resource}.hits{service:${var.service_name},env:${var.env}}, 'agile', 3, direction='both', alert_window='last_30m', interval=20, count_default_zero='true', seasonality='hourly') >= 1"
 
