@@ -26,7 +26,9 @@ variable "options" {
   description = "A map of options. 'tick_every' (Required) 900, 1800, 3600, 21600, 43200, 86400, 604800 plus 60."
 
   default = {
-    tick_every = 900
+    tick_every           = 60
+    min_failure_duration = 3
+    min_location_failed  = 1
   }
 }
 
