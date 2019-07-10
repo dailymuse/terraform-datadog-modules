@@ -27,7 +27,7 @@ variable "options" {
 
   default = {
     tick_every           = 60
-    min_failure_duration = 3
+    min_failure_duration = 180
     min_location_failed  = 1
   }
 }
