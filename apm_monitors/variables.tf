@@ -40,7 +40,6 @@ variable "high_p90_latency_thresholds" {
 
   default = {
     critical = 1
-    warning  = 0
   }
 }
 
